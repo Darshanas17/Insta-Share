@@ -1,0 +1,64 @@
+.post-container {
+  width: 100%;
+  height: 866px;
+  background-color: #ffffff;
+  border: 1px solid #dbdbdb;
+  opacity: 1;
+  border-radius: 4px;
+  margin-bottom: 32px;
+}
+.post-header {
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+}
+
+.profile-border {
+  margin: 14px 16px 14px 24px;
+
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    314.35deg,
+    #e20337 6.03%,
+    #c60188 40.88%,
+    #7700c3 73.23%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-user-profile {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+
+  border: 1px solid #ffffff;
+}
+
+.post-username {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  vertical-align: middle;
+  color: #262626;
+}
+@media screen and (max-width: 768px) {
+  .post-username {
+    font-size: 18px;
+  }
+  .post-user-profile {
+    width: 32px;
+    height: 32px;
+  }
+  .profile-border {
+    width: 34px;
+    height: 34px;
+  }
+}

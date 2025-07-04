@@ -1,0 +1,19 @@
+.home-bg-container {
+  background-color: #fafafa;
+  width: 100%;
+  min-height: 100vh;
+}
+.app-container-home {
+  display: flex;
+  justify-content: center;
+}
+.home-content-container {
+  padding-top: 20px;
+  width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  .home-content-container {
+    width: 100%;
+  }
+}

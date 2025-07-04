@@ -1,0 +1,32 @@
+.slider-item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.story-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.story-username {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: middle;
+
+  color: #262626;
+}
+
+@media screen and (max-width: 768px) {
+  /* .slider-item-container {
+    width: 60px;
+  } */
+  .story-image {
+    width: 50px;
+    height: 50px;
+  }
+}

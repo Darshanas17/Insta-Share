@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+}
+
+/* container */
+.app-container-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100vh;
+}
+
+.form-container {
+  box-shadow: 0px 8px 40px 0px #07070714;
+  width: 456px;
+  height: 458px;
+  border-radius: 8px;
+  padding: 60px 48px 48px;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin-top: 20px;
+  width: 100%;
+}
+.form-button {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 20px;
+
+  background-color: #4094ef;
+  color: #ffffff;
+
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* image */
+.logo-image {
+  width: 82px;
+  height: 42px;
+}
+.login-image {
+  width: 582px;
+  height: 373px;
+  margin-right: 82px;
+}
+
+/* text  */
+.logo-name {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #262626;
+}
+
+.form-label {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 1%;
+  text-transform: uppercase;
+  color: #262626;
+}
+.form-input {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 8px 16px;
+
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+  border-radius: 2px;
+
+  background-color: #eeeeee;
+  border: none;
+
+  outline: none;
+}
+.error-message {
+  width: 100%;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  margin: 0px;
+  margin-top: 8px;
+
+  color: #ef4444;
+}
+
+/* responsive */
+/* responsive */
+/* responsive */
+
+@media screen and (max-width: 768px) {
+  .image-container {
+    display: none;
+  }
+  .form-container {
+    width: 100%;
+    box-shadow: none;
+    padding: 24px;
+  }
+}
