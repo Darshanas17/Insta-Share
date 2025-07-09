@@ -1,0 +1,40 @@
+.profile-bg-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+.profile-loader-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-container {
+  width: 80%;
+}
+.retry-button {
+  width: 102px;
+  height: 32px;
+  border: none;
+
+  gap: 8px;
+
+  border-radius: 8px;
+  padding: 8px 24px;
+
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0%;
+
+  background-color: #4094ef;
+  color: #ffffff;
+}
+@media screen and (max-width: 768px) {
+  .profile-container {
+    width: 100%;
+  }
+}

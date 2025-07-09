@@ -15,7 +15,7 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class MyProfile extends Component {
+class UserProfile extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     profileData: [],
@@ -26,9 +26,13 @@ class MyProfile extends Component {
   }
 
   getProfileData = async () => {
+    const {match} = this.props
+    const {params} = match
+    const {userId} = params
+
     this.setState({apiStatus: apiStatusConstants.inProgress})
 
-    const profileAPI = 'https://apis.ccbp.in/insta-share/my-profile'
+    const profileAPI = `https://apis.ccbp.in/insta-share/users/${userId}`
     const accessToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -38,23 +42,26 @@ class MyProfile extends Component {
     }
 
     const response = await fetch(profileAPI, options)
+
     if (response.ok) {
       const data = await response.json()
-      const {profile} = data
+      console.log(data)
+      const {user_details: userDetails} = data
+
       const updatedProfile = {
-        id: profile.id,
-        userId: profile.user_id,
-        userName: profile.user_name,
-        profilePic: profile.profile_pic,
-        followersCount: profile.followers_count,
-        followingCount: profile.following_count,
-        userBio: profile.user_bio,
-        postsCount: profile.posts_count,
-        posts: profile.posts.map(post => ({
+        id: userDetails.id,
+        userId: userDetails.user_id,
+        userName: userDetails.user_name,
+        profilePic: userDetails.profile_pic,
+        followersCount: userDetails.followers_count,
+        followingCount: userDetails.following_count,
+        userBio: userDetails.user_bio,
+        postsCount: userDetails.posts_count,
+        posts: userDetails.posts.map(post => ({
           id: post.id,
           image: post.image,
         })),
-        stories: profile.stories.map(story => ({
+        stories: userDetails.stories.map(story => ({
           id: story.id,
           image: story.image,
         })),
@@ -96,9 +103,9 @@ class MyProfile extends Component {
     const {profileData} = this.state
 
     const altValues = {
-      profile: 'my profile',
-      story: 'my story',
-      post: 'my post',
+      profile: 'user profile',
+      story: 'user story',
+      post: 'user post',
     }
 
     return (
@@ -133,4 +140,4 @@ class MyProfile extends Component {
   }
 }
 
-export default MyProfile
+export default UserProfile

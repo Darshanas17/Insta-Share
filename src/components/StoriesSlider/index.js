@@ -67,6 +67,23 @@ class StoriesSlider extends Component {
     }
   }
 
+  renderStoriesFailureView = () => (
+    <div className="failure-view-container">
+      <img
+        src="https://res.cloudinary.com/du3fq1wgm/image/upload/v1751977032/alert-triangle_c9ttfz.png"
+        alt="failure view"
+      />
+      <p>Something went wrong. Please try again</p>
+      <button
+        type="button"
+        onClick={this.getStoriesData}
+        className="retry-button"
+      >
+        Try again
+      </button>
+    </div>
+  )
+
   renderStoriesSliderView = () => {
     const {usersStories} = this.state
 
@@ -115,7 +132,7 @@ class StoriesSlider extends Component {
   }
 
   renderStoriesLoadingView = () => (
-    <div className="stories-loader-container" data-testid="loader">
+    <div className="stories-loader-container" testid="loader">
       <Loader
         type="TailSpin"
         color="#4094EF"

@@ -17,24 +17,27 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class UserPost extends Component {
+class SearchedResultsPost extends Component {
   state = {
     apiStatus: apiStatusConstants.success,
     usersPosts: [],
   }
 
   componentDidMount() {
-    this.getPostsData()
+    this.getSearchPostsData()
   }
 
-  // onClickSearchButton = () => {
-  //   const {searchInput} = this.props
-  //   console.log('Searched...')
-  // }
+  componentDidUpdate(prevProps) {
+    const {searchTrigger} = this.props
+    if (prevProps.searchTrigger !== searchTrigger) {
+      this.getSearchPostsData()
+    }
+  }
 
-  getPostsData = async () => {
+  getSearchPostsData = async () => {
+    const {searchInput} = this.props
     this.setState({apiStatus: apiStatusConstants.inProgress})
-    const postsAPI = 'https://apis.ccbp.in/insta-share/posts'
+    const searchPostsAPI = `https://apis.ccbp.in/insta-share/posts?search=${searchInput}`
     const accessToken = Cookies.get('jwt_token')
     const options = {
       headers: {
@@ -43,11 +46,11 @@ class UserPost extends Component {
       method: 'GET',
     }
 
-    const response = await fetch(postsAPI, options)
+    const response = await fetch(searchPostsAPI, options)
 
     if (response.ok === true) {
       const fetchedData = await response.json()
-      console.log('Fetched Posts Data: ', fetchedData)
+      console.log('Fetched Search Results Posts Data: ', fetchedData)
       const updatedPosts = fetchedData.posts.map(post => ({
         id: post.post_id,
         userId: post.user_id,
@@ -73,22 +76,22 @@ class UserPost extends Component {
     }
   }
 
-  renderAllPostViews = () => {
+  renderAllSearchPostViews = () => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderPostView()
+        return this.renderSearchPostView()
       case apiStatusConstants.inProgress:
-        return this.renderPostLoadingView()
+        return this.renderSearchPostLoadingView()
       case apiStatusConstants.failure:
-        return this.renderPostFailureView()
+        return this.renderSearchPostFailureView()
       default:
         return null
     }
   }
 
-  renderPostFailureView = () => (
+  renderSearchPostFailureView = () => (
     <div className="failure-view-container">
       <img
         src="https://res.cloudinary.com/du3fq1wgm/image/upload/v1751977032/alert-triangle_c9ttfz.png"
@@ -97,7 +100,7 @@ class UserPost extends Component {
       <p>Something went wrong. Please try again</p>
       <button
         type="button"
-        onClick={this.getPostsData}
+        onClick={this.getSearchPostsData}
         className="retry-button"
       >
         Try again
@@ -105,13 +108,14 @@ class UserPost extends Component {
     </div>
   )
 
-  renderPostView = () => {
+  renderSearchPostView = () => {
     const {usersPosts} = this.state
 
-    return (
-      <ul className="post-list-container">
+    return usersPosts.length > 0 ? (
+      <div>
+        <h1 className="search-results-heading">Search Results</h1>
         {usersPosts.map(eachPost => (
-          <li className="post-container" key={eachPost.id}>
+          <div className="post-container" key={eachPost.id}>
             <div className="post-header">
               <div className="profile-border">
                 <img
@@ -155,11 +159,11 @@ class UserPost extends Component {
                 </button>
               </div>
               <p className="post-total-likes">{eachPost.likesCount} likes</p>
-              <p className="post-caption">{eachPost.caption} likes</p>
+              <p className="post-caption">{eachPost.caption}</p>
               <ul className="comments-list">
                 {eachPost.comments.map(eachComment => (
-                  <li key={eachComment.commentUserId}>
-                    <p className="post-comment">
+                  <li className="post-comment" key={eachComment.comment}>
+                    <p>
                       <span className="comment-username">
                         {eachComment.userName}
                       </span>{' '}
@@ -170,13 +174,25 @@ class UserPost extends Component {
               </ul>
               <p className="post-created-at">{eachPost.createdAt}</p>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
+    ) : (
+      <div className="search-results-not-found-container">
+        <img
+          src="https://res.cloudinary.com/du3fq1wgm/image/upload/v1751952488/search_not_found_hryoee.png"
+          alt="search not found"
+          className="search not found"
+        />
+        <h1 className="search-not-found-heading">Search Not Found</h1>
+        <p className="search-not-found-description">
+          Try different keyword or search again
+        </p>
+      </div>
     )
   }
 
-  renderPostLoadingView = () => (
+  renderSearchPostLoadingView = () => (
     <div className="post-loader-container" testid="loader">
       <Loader
         type="TailSpin"
@@ -249,8 +265,12 @@ class UserPost extends Component {
   }
 
   render() {
-    return <div className="post-bg-container">{this.renderAllPostViews()}</div>
+    return (
+      <div className="searched-post-bg-container">
+        {this.renderAllSearchPostViews()}
+      </div>
+    )
   }
 }
 
-export default UserPost
+export default SearchedResultsPost

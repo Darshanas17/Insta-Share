@@ -1,7 +1,6 @@
 import {Component} from 'react'
 import {FaSearch} from 'react-icons/fa'
-import {RxHamburgerMenu} from 'react-icons/rx'
-import {IoIosCloseCircle} from 'react-icons/io'
+import {IoIosCloseCircle, IoIosMenu} from 'react-icons/io'
 
 import Cookies from 'js-cookie'
 import {withRouter, Link} from 'react-router-dom'
@@ -43,8 +42,15 @@ class Header extends Component {
     history.replace('/login')
   }
 
-  onClickSearch = () => {
-    console.log('Search Button Clicked')
+  onChangeSearchInput = event => {
+    const {onChangeSearchInputHandler} = this.props
+    const {value} = event.target
+    onChangeSearchInputHandler(value)
+  }
+
+  onClickSearchButton = () => {
+    const {onClickSearchButtonHandler} = this.props
+    onClickSearchButtonHandler()
   }
 
   render() {
@@ -61,16 +67,17 @@ class Header extends Component {
         <div className="header-bg-container">
           <div className="header-container">
             {/* Logo Section */}
-            <div className="header-logo-container">
-              <Link to="/">
+
+            <Link to="/">
+              <div className="header-logo-container">
                 <img
                   src="https://res.cloudinary.com/du3fq1wgm/image/upload/v1751363307/insta_share_logo_n7l2xq.png"
                   className="header-logo-image"
                   alt="website logo"
                 />
-              </Link>
-              <h1 className="header-logo-name">Insta Share</h1>
-            </div>
+                <h1 className="header-logo-name">Insta Share</h1>
+              </div>
+            </Link>
 
             {/* Desktop View */}
             <div className="header-laptop-container">
@@ -79,11 +86,13 @@ class Header extends Component {
                   type="search"
                   className="search-input"
                   placeholder="Search Caption"
+                  onChange={this.onChangeSearchInput}
                 />
                 <button
                   type="button"
                   className="search-button"
-                  onClick={this.onClickSearch}
+                  onClick={this.onClickSearchButton}
+                  testid="searchIcon"
                 >
                   <FaSearch className="search-icon" testid="searchIcon" />
                 </button>
@@ -126,7 +135,7 @@ class Header extends Component {
                 className="humburger-menu"
                 onClick={this.onClickHamburgerMenu}
               >
-                <RxHamburgerMenu />
+                <IoIosMenu />
               </button>
             </div>
           </div>

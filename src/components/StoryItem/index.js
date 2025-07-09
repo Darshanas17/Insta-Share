@@ -5,7 +5,7 @@ const StoryItem = props => {
   const {userName, storyUrl} = userStoryDetails
   return (
     <div className="slider-item-container">
-      <img className="story-image" alt="story img" src={storyUrl} />
+      <img className="story-image" alt="user story" src={storyUrl} />
       <p className="story-username">{userName}</p>
     </div>
   )
