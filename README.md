@@ -2,7 +2,9 @@
 
 A responsive, full-featured **Instagram-like social media application** built using **React**. This project demonstrates skills in routing, authentication, authorization, API integration, state management, and UI design with React class components.
 
-**🔗 Live Demo**: [instashare17dar.ccbp.tech](https://instashare17dar.ccbp.tech/)
+*🔗 Live Demo*: *[instashare17dar.ccbp.tech](https://instashare17dar.ccbp.tech/)*
+
+*🔗 Design File*: *[Figma Prototype for Insta Share](https://www.figma.com/design/FwBVnpWfl5DYJ77kbljTdT/Insta_Share?node-id=0-1&p=f&t=C3TZaez57td4iMLh-0)*
 
 ---
 
@@ -101,13 +103,4 @@ src/
 ## 📜 License
 
 This project is a part of the **NxtWave CCBP 4.0 React Course** and is intended for educational purposes.
-
----
-
-## 🙌 Acknowledgements
-
-* [NxtWave CCBP](https://ccbp.in/)
-* [React Slick](https://react-slick.neostack.com/)
-* [React Icons](https://react-icons.github.io/react-icons/)
-* [Figma UI](https://www.figma.com/)
 
